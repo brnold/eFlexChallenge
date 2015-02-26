@@ -1,36 +1,11 @@
-starter-kit
-===========
+This is an webapplication written in ember.js. 
 
-A starter kit for Ember
+The user will enter his/her first and last name and date of birth and this will be commited to a database (MongoDB). The application will also provide a means to retreive the information from the database
 
-Your Ember.js project is almost ready! Here's how to get started:
+At this current iteration, I have MongoDB set up to the point of having 3 input boxes and a button. 
 
-- Start writing your app in `js/app.js`.
+I am currently working on creating a webserver using node.js and express. Once that is running I will interface with MongoDB.
 
-- Describe your application HTML in `index.html`.
+Current holes in my knowldge are
 
-- During development, you can link to `js/libs/ember-*.js` to get the
-  unminified version of Ember.js.
-
-- Add CSS to `css/style.css`.
-
-- Open `index.html` in your browser.
-
-Tests
-=====
-
-This starter kit comes with an integration test sample, written for QUnit runner. 
-
-You can run the tests by opening the `index.html?test` page in your browser.
-
-The test is located in the `tests/tests.js` file. You can see how such an 
-integration test should be written, using QUnit assertions and ember-testing helpers.
-
-For more information about ember-testing package see [ember-testing](http://emberjs.com/guides/testing/integration/).
-
-For more information about the QUnit testing framework, see [QUnit](http://qunitjs.com/).
-
-Contact
-====
-
-[www.emberjs.com](http://www.emberjs.com)
+1. How to I transfer data between the node.js framework and the webserver?
