@@ -1,0 +1,26 @@
+{
+  "name": "eFlexChallenge",
+  "version": "1.0.0",
+  "description": "Webserver for the eFlexChallenge",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "express": "^4.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brnold/eFlexChallenge.git"
+  },
+  "author": "Benjamin Nold",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brnold/eFlexChallenge/issues"
+  },
+  "homepage": "https://github.com/brnold/eFlexChallenge"
+}
