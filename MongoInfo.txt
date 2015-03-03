@@ -2,4 +2,4 @@ Mongo
 I saved it in ./data/db
 
 --to start the database
-mongod --dbpath ./ 
+mongod --dbpath ./data/db 

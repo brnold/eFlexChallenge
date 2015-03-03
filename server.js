@@ -39,7 +39,7 @@ router.get('/', function(req, res) {
 
 // on routes that end in /names
 // ----------------------------------------------------
-router.route('/persons') //I know, multiple p are persons. 
+router.route('/persons') //I know, bad grammar  are persons. 
 
 	// create a person entry (accessed at POST http://localhost:8080/persons)
 	.post(function(req, res) {

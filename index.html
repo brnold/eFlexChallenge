@@ -25,11 +25,11 @@
 
 
 
-    <script type="text/x-handlebars">
+    <script type="text/x-handlebars" data-template-name="index" >
 
 
      
-            <h1>This is a set of text boxes</h1>
+            <h1>This is a set of text boxes {{firstName}} </h1>
             {{input
               type="text"
               placeholder="Please enter your Fist Name?"
@@ -53,7 +53,7 @@
 
               <br>
 
-              <button id="clear-completed" {{action "submitForm"}}>
+              <button id="clear-completed" {{action 'submitForm'}}>
               This is a button
               </button>
         
@@ -63,13 +63,7 @@
 
 
 
-    <script type="text/x-handlebars" id="index">
-      <ul>
-      {{#each item in model}}
-        <li>{{item}}</li>
-      {{/each}}
-      </ul>
-    </script>
+    
 
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/ember-template-compiler-1.10.0.js"></script>
