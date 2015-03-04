@@ -2,65 +2,73 @@
   <html>
   <head>
     <meta charset="utf-8">
-    <title>Simple Ember.js Application</title>
+    <title>Basic Submission Form Site</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 
     <style>
     body {
       background-color: #b0c4de; <!-- somthing to not hurt my eyes-->
-
     }
     </style>
 
   </head>
 
-
-
   <body>
+
+    <script type="text/x-handlebars" >
+      <header>
+      <h1>Really Cool Ember.js Application</h1>
+      </header>
+
+      <ul class="nav">
+      <li>{{#link-to 'Form'}}Form{{/link-to}}</li>
+      <li>{{#link-to 'ViewData'}}ViewData{{/link-to}}</li>
+      </ul>
+
+      {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="form" >
+
+        <h1>Please enter the following information</h1>
+        <br>
+        <h3>First Name:
+        {{input
+          type="text"
+          placeholder="Fist Name"
+          value=firstNameTextBox
+          }}
+        </h3>
+        <br>
+        <h3>Last Name:
+        {{input
+          type="text"
+          placeholder="Last Name"
+          value=lastNameTextBox
+          }}
+        </h3>
+        <br>
+        <h3>Date of Birth:
+        {{input
+          type="text"
+          placeholder="mm/dd/yyyy"
+          value=dobTextBox
+          }}
+        </h3>
+        <br>
+
+        <button id="clear-completed" {{action 'submitForm'}}>
+        Submit
+        </button>
     
-  <header>
-      <h1>Insanity check, am I understand what I'm reading?</h1>
-  </header>
-
-
-
-    <script type="text/x-handlebars" data-template-name="index" >
-
-
-     
-            <h1>This is a set of text boxes {{firstName}} </h1>
-            {{input
-              type="text"
-              placeholder="Please enter your Fist Name?"
-              value=firstNameTextBox
-              }}
-
-              <br>
-
-            {{input
-              type="text"
-              placeholder="Please enter your second Name"
-              value=lastNameTextBox
-              }}
-
-              <br>
-            {{input
-              type="text"
-              placeholder="Please enter your date of birth"
-              value=dobTextBox
-              }}
-
-              <br>
-
-              <button id="clear-completed" {{action 'submitForm'}}>
-              This is a button
-              </button>
-        
         
 
     </script>
 
+    <script type="text/x-handlebars" data-template-name="ViewData" >
+      {{lastName}}
+    </script>
 
 
     

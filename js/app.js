@@ -1,12 +1,65 @@
 App = Ember.Application.create();
 
 App.Router.map(function() {
-  //this.resouce('index', {path: '/'});
+  this.resource('ViewData');
+  this.resource('Form');
 });
 
-App.IndexController = Ember.Controller.extend({
-  firstName: "Frank",
-  lastName: "Letzes Name",
+App.ApplicationController = Ember.Controller.extend({
+
+});
+
+App.VIewDataRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find('api/persons', null);
+  }
+
+
+
+  // model: function() {
+  //   var http = new XMLHttpRequest();
+  //   var url = "api/persons";
+
+  //   http.onload = reqListener;;
+
+  //   http.open("GET", url, true);
+  //   http.send(null);
+  
+  // }
+  // reqListener: function () {
+  //   console.log(this.responseText);
+  // }
+
+});
+
+
+App.ViewDataController = Ember.Controller.extend({
+    
+//   actions: {
+//       getData: function(){ 
+//       var http = new XMLHttpRequest();
+//       var url = "api/persons";
+
+//       http.onload = reqListener;;
+
+//       http.open("GET", url, true);
+//       http.send(null);
+//     }
+  
+// function reqListener () {
+//     console.log(this.responseText);
+//   }
+
+//   }
+
+  
+
+});
+
+
+
+App.FormController = Ember.Controller.extend({
+
 
   actions: {
     submitForm: function() {
@@ -24,8 +77,11 @@ App.IndexController = Ember.Controller.extend({
       
 
 
-      // Clear the "New Todo" text field
-      this.set('textBox', '');
+      // Clear the text fields
+      this.set('firstNameTextBox', '');
+      this.set('lastNameTextBox', '');
+      this.set('dobTextBox', '');
+
 
       var params = "firstName=" + firstName + "&lastName=" + lastName + "&dob=" + DOB;
 
@@ -45,7 +101,7 @@ App.IndexController = Ember.Controller.extend({
       http.send(params);
 
     }
-  },
+  }
 
 
 });
