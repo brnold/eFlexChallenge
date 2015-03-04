@@ -1,6 +1,6 @@
 # Useful ember.js, node.js and MongoDB example
 
-This is an webapplication written in ember.js that uses node.js and MongoDB for the backend. 
+This is an webapplication written in ember.js that uses node.js and MongoDB for the backend. I used the ZURB foundation for the CSS.
 
 The user will enter his/her first and last name and date of birth and this will be commited to a database (MongoDB). The application will also provide a means to retreive the information from the database
 
