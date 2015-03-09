@@ -3,7 +3,7 @@ App = Ember.Application.create();
 
 
 App.Router.map(function() {
-  this.resource('DieDaten');
+  this.resource('DieDaten'); //German for 'The Data', I was having issues with this route and I renamed it to somthing very unique to solve the issue.
   this.resource('Form');
   this.resource('Confirm');
   this.resource('Person');
@@ -15,12 +15,12 @@ App.ApplicationStore = DS.Store.extend();
 App.Person = DS.Model.extend({  //this is my data model
     firstName: DS.attr('string'),
     lastName: DS.attr('string'),
-    dob: DS.attr('string')
+    dob: DS.attr('string'),
 
-    /*//ember docs for this logic. 
+    //ember docs for this logic. 
     fullName: function() {
     return this.get('firstName') + ' ' + this.get('lastName');
-  }.property('firstName', 'lastName')*/
+  }.property('firstName', 'lastName')
 });
 
 App.ApplicationAdapter = DS.RESTAdapter.extend({
@@ -37,6 +37,7 @@ App.PersonRoute = Ember.Route.extend({
 
 App.ApplicationController = Ember.Controller.extend({
 
+
 });
 
 App.MyArrayController = Ember.ArrayController.extend({
@@ -47,8 +48,10 @@ App.MyArrayController = Ember.ArrayController.extend({
         });
     }
 
+
 });
 
+//It's German for "The Data Route" When allelse fails, name the problem varible/template name in German.
 App.DieDatenRoute = Ember.Route.extend({ 
 
   model: function () {
@@ -58,9 +61,7 @@ App.DieDatenRoute = Ember.Route.extend({
 });
 
 App.DieDatenController = Ember.Controller.extend({
-  name : "before click", 
   
- 
   actions: {
     click: function() {
       var self = this;  //THANK YOU STACKOVERFLOW!
@@ -82,9 +83,7 @@ App.DieDatenController = Ember.Controller.extend({
         });
             
       });
-
     }
-
   }
 
  

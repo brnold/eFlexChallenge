@@ -91,12 +91,11 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="DieDaten" >
-    <p>{{name}} some text2</p>
      
      <ul id="todo-list">
      {{#each person in model}}
             <li>
-              <label>{{person.firstName}} and text</label>
+              <label>First Name: {{person.firstName}}, Last Name: {{person.lastName}}, Full Name: {{person.fullName}} was born on {{person.dob}}</label>
             </li>
       {{/each}}
       </ul>
@@ -104,7 +103,7 @@
 
 
      <button id="clear-completed" {{action 'click'}}>
-        Submit
+        Click me to see the data
       </button>
     
     </script>

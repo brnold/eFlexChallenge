@@ -9,10 +9,10 @@ var express = require('express');
 var bodyParser = require('body-parser'); 
 var app = express();
 var morgan     = require('morgan');
-// var loginOptions = {
-// 	user: 'WebApp',
-// 	pass: '45Tests'
-// }
+var loginOptions = {
+	user: 'WebApp',
+	pass: '45Tests'
+}
 
 
 // configure app
@@ -23,8 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var mongoose   = require('mongoose');
-//mongoose.connect('mongodb://ds051831.mongolab.com:51831/brnold', loginOptions); // connect to my database
-mongoose.connect('mongodb://localhost:27017/test'); // connect to my database
+mongoose.connect('mongodb://ds051831.mongolab.com:51831/brnold', loginOptions); // connect to my database
+//mongoose.connect('mongodb://localhost:27017/test'); // connect to my database
 var Person     = require('./app/models/person');
 
 
@@ -78,56 +78,10 @@ router.route('/people') //I know, bad grammar
 		console.log("People were retreived!");
 	});
 
-// // on routes that end in /persons/:person_id
-// // ----------------------------------------------------
-// router.route('/people/:person_id')
-
-// 	// get the person with that id
-// 	.get(function(req, res) {
-// 		Person.findById(req.params.person_id, function(err, person) {
-// 			if (err)
-// 				res.send(err);
-// 			res.json(JSON.stringify(person));
-// 		});
-// 	})
-
-// 	// update the person with this id
-// 	.put(function(req, res) {
-// 		person.findById(req.params.person_id, function(err, person) {
-
-// 			if (err)
-// 				res.send(err);
-
-// 			person.name = req.body.name;
-// 			person.save(function(err) {
-// 				if (err)
-// 					res.send(err);
-
-// 				res.json({ message: 'person updated!' });
-// 			});
-
-// 		});
-// 	})
-
-// 	// delete the person with this id
-// 	.delete(function(req, res) {
-// 		person.remove({
-// 			_id: req.params.person_id
-// 		}, function(err, person) {
-// 			if (err)
-// 				res.send(err);
-
-// 			res.json({ message: 'Successfully deleted' });
-// 		});
-// 	});
 
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
-
-
-//------------------------------------------------------------
-//this is the "old code"
 
 
 
