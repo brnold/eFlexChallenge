@@ -9,10 +9,10 @@ var express = require('express');
 var bodyParser = require('body-parser'); 
 var app = express();
 var morgan     = require('morgan');
-var loginOptions = {
-	user: 'WebApp',
-	pass: '45Tests'
-}
+// var loginOptions = {
+// 	user: 'WebApp',
+// 	pass: '45Tests'
+// }
 
 
 // configure app
@@ -23,7 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://ds051831.mongolab.com:51831/brnold', loginOptions); // connect to my database
+//mongoose.connect('mongodb://ds051831.mongolab.com:51831/brnold', loginOptions); // connect to my database
+mongoose.connect('mongodb://localhost:27017/test'); // connect to my database
 var Person     = require('./app/models/person');
 
 

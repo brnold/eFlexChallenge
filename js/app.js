@@ -40,23 +40,27 @@ App.ApplicationController = Ember.Controller.extend({
 });
 
 App.MyArrayController = Ember.ArrayController.extend({
-  
+  model: function() {
       $.getJSON('api/people', function(data) {
             
        App.MyArrayController.set('model', data);
         });
+    }
+
+});
+
+App.DieDatenRoute = Ember.Route.extend({ 
+
+  model: function () {
+    return this.store.all('person');
+  }
 
 });
 
 App.DieDatenController = Ember.Controller.extend({
   name : "before click", 
   
-  model: function () {
-    var stuff = this.store.all('people');
-
-    return stuff;
-  },
-
+ 
   actions: {
     click: function() {
       var self = this;  //THANK YOU STACKOVERFLOW!
