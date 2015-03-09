@@ -36,10 +36,11 @@
   <section class="top-bar-section">
     <!-- Left Nav Section -->
     <ul class="left">
-      
+      <li class="divider"></li>
       <li><a href="#">{{#link-to 'Form'}}Form{{/link-to}}</a></li>
       <li class="divider"></li>
-      <li><a href="#">{{#link-to 'ViewData'}}ViewData{{/link-to}}</a></li>
+      <li><a href="#">{{#link-to 'DieDaten'}}View Data{{/link-to}}</a></li>
+      <li class="divider"></li>
     </ul>
   </section>
 
@@ -48,7 +49,6 @@
 
 
     {{outlet}}
-
 
     </script>
 
@@ -90,18 +90,38 @@
 
     </script>
 
-    <script type="text/x-handlebars" data-template-name="ViewData" >
-      
-      <p>Why? {{title}}</p>
-      
+    <script type="text/x-handlebars" data-template-name="DieDaten" >
+    <p>{{name}} some text2</p>
+     
+     <ul id="todo-list">
+     {{#each person in App.MyArrayController}}
+            <li>
+              <label>{{person.firstName}} and text</label>
+            </li>
+      {{/each}}
+      </ul>
+
+
+
+     <button id="clear-completed" {{action 'click'}}>
+        Submit
+      </button>
+    
     </script>
 
 
+    <script type="text/x-handlebars" data-template-name="Confirm" >
+      
+      <h3>Thank you, your data was submitted!</h3>
+      
+    </script>
     
 
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/ember-template-compiler-1.10.0.js"></script>
     <script src="js/libs/ember-1.10.0.debug.js"></script>
+    <script src="js/libs/ember-data.js"></script>
+
     <script src="js/app.js"></script>
 
   </body>

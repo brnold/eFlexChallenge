@@ -1,32 +1,94 @@
+
 App = Ember.Application.create();
 
+
 App.Router.map(function() {
-  this.resource('ViewData');
+  this.resource('DieDaten');
   this.resource('Form');
+  this.resource('Confirm');
+  this.resource('Person');
+});
+
+
+App.ApplicationStore = DS.Store.extend();
+
+App.Person = DS.Model.extend({  //this is my data model
+    firstName: DS.attr('string'),
+    lastName: DS.attr('string'),
+    dob: DS.attr('string')
+
+    /*//ember docs for this logic. 
+    fullName: function() {
+    return this.get('firstName') + ' ' + this.get('lastName');
+  }.property('firstName', 'lastName')*/
+});
+
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+  host: '//localhost:3000',
+  namespace: 'api'
+});
+
+
+App.PersonRoute = Ember.Route.extend({
+  model: function () {
+    return this.store.find('person');
+  }
 });
 
 App.ApplicationController = Ember.Controller.extend({
 
 });
 
-App.ViewDataRoute = Ember.Route.extend({
-  model: function() {
-   // return this.store.find('api/persons', null);
-    return posts;
+App.MyArrayController = Ember.ArrayController.extend({
+  
+      $.getJSON('api/people', function(data) {
+            
+       App.MyArrayController.set('model', data);
+        });
+
+});
+
+App.DieDatenController = Ember.Controller.extend({
+  name : "before click", 
+  
+  model: function () {
+    var stuff = this.store.all('people');
+
+    return stuff;
+  },
+
+  actions: {
+    click: function() {
+      var self = this;  //THANK YOU STACKOVERFLOW!
+      $.getJSON('api/people', function(data) {
+            
+        $.each(data,function(i,item){
+          //content ='<span>'+item.firstName+'<br />'+item.lastName+'<br /></span>';
+          //alert(i + " " + item.firstName) //this is cycling through the data, finally
+
+         
+          var personcreated = self.store.createRecord('person', {
+            firstName: item.firstName,
+            lastName: item.lastName,
+            dob: item.dob
+            
+          });
+
+          personcreated.save();
+        });
+            
+      });
+
+    }
+
   }
 
-
+ 
 });
 
-
-App.ViewDataController = Ember.Controller.extend({
-    
-title: 'hearder asdfasd'
-  
+App.ConfirmRoute = Ember.Controller.extend({
 
 });
-
-
 
 App.FormController = Ember.Controller.extend({
 
@@ -36,7 +98,7 @@ App.FormController = Ember.Controller.extend({
       //code for making a http POST request obtained from 
       //http://stackoverflow.com/questions/9713058/sending-post-data-with-a-xmlhttprequest
       var http = new XMLHttpRequest();
-      var url = "api/persons";
+      var url = "api/people";
       http.open("POST", url, true);
 
       // Get the text from the textfields
@@ -53,9 +115,9 @@ App.FormController = Ember.Controller.extend({
       this.set('dobTextBox', '');
 
 
-      var params = "firstName=" + firstName + "&lastName=" + lastName + "&dOB=" + DOB;
+      var params = "firstName=" + firstName + "&lastName=" + lastName + "&dob=" + DOB ;
 
-      console.log("I am sending" & params);
+      console.log("I am sending: " + params);
 
       //Send the proper header information along with the request
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -69,26 +131,8 @@ App.FormController = Ember.Controller.extend({
       }
 
       http.send(params);
-
+      //this.transistionToRoute('Confirm', null);
     }
   }
-
-
 });
 
-
-var posts = [{
-  id: '1',
-  title: "Rails is Omakase",
-  author: { name: "d2h" },
-  date: new Date('12-27-2012'),
-  excerpt: "There are lots of à la carte software environments in this world. Places where in order to eat, you must first carefully look over the menu of options to order exactly what you want.",
-  body: "I want this for my ORM, I want that for my template language, and let's finish it off with this routing library. Of course, you're going to have to know what you want, and you'll rarely have your horizon expanded if you always order the same thing, but there it is. It's a very popular way of consuming software.\n\nRails is not that. Rails is omakase."
-}, {
-  id: '2',
-  title: "The Parley Letter",
-  author: { name: "d2h" },
-  date: new Date('12-24-2012'),
-  excerpt: "My [appearance on the Ruby Rogues podcast](http://rubyrogues.com/056-rr-david-heinemeier-hansson/) recently came up for discussion again on the private Parley mailing list.",
-  body: "A long list of topics were raised and I took a time to ramble at large about all of them at once. Apologies for not taking the time to be more succinct, but at least each topic has a header so you can skip stuff you don't care about.\n\n### Maintainability\n\nIt's simply not true to say that I don't care about maintainability. I still work on the oldest Rails app in the world."  
-}];
