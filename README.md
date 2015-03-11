@@ -13,7 +13,7 @@ MongoDB is running on it's defualt port. The application saves data in the test 
 
 Wishlist:
 	Error checking on the input boxes (Is it actually an data of birth, etc)	
-	Fix the multiplying blank records issue when ever the database gets a find request.
+	
 
 One thing I learned was to have a better naming convention. 
 
