@@ -1,4 +1,4 @@
-//Modified helloworld example. 
+//Modified helloworld example.
 //retreived from http://expressjs.com/starter/hello-world.html
 
 //much of this code came from an github example
@@ -6,7 +6,7 @@
 //I have modified it to fit my needs.
 
 var express = require('express');
-var bodyParser = require('body-parser'); 
+var bodyParser = require('body-parser');
 var app = express();
 var morgan     = require('morgan');
 var loginOptions = {
@@ -40,16 +40,16 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });	
+	res.json({ message: 'hooray! welcome to our api!' });
 });
 
 // on routes that end in /names
 // ----------------------------------------------------
-router.route('/people') //I know, bad grammar 
+router.route('/people') //I know, bad grammar
 
 	// create a person entry (accessed at POST http://localhost:8080/persons)
 	.post(function(req, res) {
-		
+
 		var person = new Person();		// create a new instance of the person model
 		person.firstName = req.body.firstName;  // set the persons name (comes from the request)
 		person.lastName = req.body.lastName;
@@ -59,21 +59,23 @@ router.route('/people') //I know, bad grammar
 			if (err)
 				res.send(err);
 
-			
 		});
 
-		
 	})
 
 	// get all the persons (accessed at GET http://localhost:8080/api/persons)
 	.get(function(req, res) {
 
-		
+
 		Person.find(function(err, persons) {
 			if (err)
 				res.send(err);
 
-			res.json(persons);
+      for (var i=0; i<persons.length; i++) {
+        persons[i].id = persons[i]._id;
+      }
+
+      res.json({people: persons});
 		});
 		console.log("People were retreived!");
 	});

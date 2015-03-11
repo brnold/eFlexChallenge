@@ -17,7 +17,7 @@ App.Person = DS.Model.extend({  //this is my data model
     lastName: DS.attr('string'),
     dob: DS.attr('string'),
 
-    //ember docs for this logic. 
+    //ember docs for this logic.
     fullName: function() {
     return this.get('firstName') + ' ' + this.get('lastName');
   }.property('firstName', 'lastName')
@@ -29,12 +29,6 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 });
 
 
-App.PersonRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.find('person');
-  }
-});
-
 App.ApplicationController = Ember.Controller.extend({
 
 
@@ -43,7 +37,7 @@ App.ApplicationController = Ember.Controller.extend({
 App.MyArrayController = Ember.ArrayController.extend({
   model: function() {
       $.getJSON('api/people', function(data) {
-            
+
        App.MyArrayController.set('model', data);
         });
     }
@@ -52,41 +46,28 @@ App.MyArrayController = Ember.ArrayController.extend({
 });
 
 //It's German for "The Data Route" When allelse fails, name the problem varible/template name in German.
-App.DieDatenRoute = Ember.Route.extend({ 
+App.DieDatenRoute = Ember.Route.extend({
 
   model: function () {
-    return this.store.all('person');
+    return this.store.find('person');
   }
 
 });
 
 App.DieDatenController = Ember.Controller.extend({
-  
+
   actions: {
     click: function() {
+
+      //this.refresh();
       var self = this;  //THANK YOU STACKOVERFLOW!
-      $.getJSON('api/people', function(data) {
-            
-        $.each(data,function(i,item){
-          //content ='<span>'+item.firstName+'<br />'+item.lastName+'<br /></span>';
-          //alert(i + " " + item.firstName) //this is cycling through the data, finally
-
-         
-          var personcreated = self.store.createRecord('person', {
-            firstName: item.firstName,
-            lastName: item.lastName,
-            dob: item.dob
-            
-          });
-
-          personcreated.save();
-        });
-            
+      this.store.find('person').then(function(data){
+        self.set('model', data);
       });
     }
   }
 
- 
+
 });
 
 App.ConfirmRoute = Ember.Controller.extend({
@@ -98,7 +79,7 @@ App.FormController = Ember.Controller.extend({
 
   actions: {
     submitForm: function() {
-      //code for making a http POST request obtained from 
+      //code for making a http POST request obtained from
       //http://stackoverflow.com/questions/9713058/sending-post-data-with-a-xmlhttprequest
       var http = new XMLHttpRequest();
       var url = "api/people";
@@ -109,7 +90,7 @@ App.FormController = Ember.Controller.extend({
       var lastName = this.get('lastNameTextBox');
       var DOB = this.get('dobTextBox');
 
-      
+
 
 
       // Clear the text fields
