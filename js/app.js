@@ -9,6 +9,12 @@ App.Router.map(function() {
   this.resource('Person');
 });
 
+App.IndexRoute = Ember.Route.extend({
+  beforeModel: function() {
+    this.transitionTo('Form');
+  }
+});
+
 
 App.ApplicationStore = DS.Store.extend();
 
@@ -45,7 +51,7 @@ App.MyArrayController = Ember.ArrayController.extend({
 
 });
 
-//It's German for "The Data Route" When allelse fails, name the problem varible/template name in German.
+//It's German for "The Data Route" When all else fails, name the problem varible/template name in German.
 App.DieDatenRoute = Ember.Route.extend({
 
   model: function () {
