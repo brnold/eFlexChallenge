@@ -2,7 +2,7 @@
   <html>
   <head>
     <meta charset="utf-8">
-    <title>Basic Submission Form Site</title>
+    <title>Epic Awesome Website</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/normalize.css">
@@ -18,40 +18,38 @@
   <body>
 
 
-
-
-
-    <script type="text/x-handlebars" >
+    <script type="text/x-handlebars" >  <!-- Main loading page form-->
     
     <nav class="top-bar" data-topbar role="navigation">
    
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="#">Really Cool Ember.js Application</a></h1>
-    </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#">Really Cool Ember.js Application</a></h1>
+        </li>
+         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      </ul>
 
-  <section class="top-bar-section">
-    <!-- Left Nav Section -->
-    <ul class="left">
-      <li class="divider"></li>
-      <li><a href="#">{{#link-to 'Form'}}Form{{/link-to}}</a></li>
-      <li class="divider"></li>
-      <li><a href="#">{{#link-to 'DieDaten'}}View Data{{/link-to}}</a></li>
-      <li class="divider"></li>
-    </ul>
-  </section>
+      <section class="top-bar-section">
+        <!-- Left Nav Section -->
+        <ul class="left">
+          <li class="divider"></li>
+          <li><a href="#">{{#link-to 'Form'}}Form{{/link-to}}</a></li>
+          <li class="divider"></li>
+          <li><a href="#">{{#link-to 'DieDaten'}}View Data{{/link-to}}</a></li>
+          <li class="divider"></li>
+        </ul>
+      </section>
 
-</nav>
+  </nav>
 
 
 
-    {{outlet}}
+    {{outlet}} <!-- This where the other templets are shown-->
 
     </script>
 
+    <!-- Data input templet, automaticaly loaded on site load-->
     <script type="text/x-handlebars" data-template-name="form" >
 
         <h1>Please enter the following information</h1>
@@ -64,6 +62,7 @@
         
           }}
         </h3>
+
         <br>
         <h3>Last Name:
         {{input
@@ -84,11 +83,10 @@
 
         <button id="clear-completed" {{action 'submitForm'}}>
         Submit
-        </button>
-    
-        
+        </button>  
 
     </script>
+
 
     <script type="text/x-handlebars" data-template-name="DieDaten" >
      
@@ -99,13 +97,10 @@
             </li>
       {{/each}}
       </ul>
-
-
-
     
     </script>
 
-
+    <!-- This was supposed to load after a complete submission to the database-->
     <script type="text/x-handlebars" data-template-name="Confirm" >
       
       <h3>Thank you, your data was submitted!</h3>

@@ -9,14 +9,14 @@ App.Router.map(function() {
   this.resource('Person');
 });
 
-App.IndexRoute = Ember.Route.extend({
+App.IndexRoute = Ember.Route.extend({ //This autoredirects to the form input page
   beforeModel: function() {
     this.transitionTo('Form');
   }
 });
 
 
-App.ApplicationStore = DS.Store.extend();
+App.ApplicationStore = DS.Store.extend(); //Could be a leftover from ember data, not sure.
 
 App.Person = DS.Model.extend({  //this is my data model
     firstName: DS.attr('string'),
@@ -29,6 +29,7 @@ App.Person = DS.Model.extend({  //this is my data model
   }.property('firstName', 'lastName')
 });
 
+
 App.ApplicationAdapter = DS.RESTAdapter.extend({
   host: '//localhost:3000',
   namespace: 'api'
@@ -36,7 +37,6 @@ App.ApplicationAdapter = DS.RESTAdapter.extend({
 
 
 App.ApplicationController = Ember.Controller.extend({
-
 
 });
 

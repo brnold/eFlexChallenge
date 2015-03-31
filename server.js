@@ -9,7 +9,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var morgan     = require('morgan');
-var loginOptions = {
+var loginOptions = { 
 	user: 'WebApp',
 	pass: '45Tests'
 }
